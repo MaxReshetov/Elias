@@ -252,8 +252,24 @@ class GalleryGrid {
     }
 }
 
-// Initialize components when DOM is loaded
+// Handle scroll events for navigation
 document.addEventListener('DOMContentLoaded', () => {
+    const body = document.body;
+    let lastScroll = 0;
+    
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        
+        // Add scrolled class when scrolling down more than 100px
+        if (currentScroll > 100) {
+            body.classList.add('scrolled');
+        } else {
+            body.classList.remove('scrolled');
+        }
+        
+        lastScroll = currentScroll;
+    });
+
     new Lightbox();
     new PressCarousel();
     new RecordingsGrid();
